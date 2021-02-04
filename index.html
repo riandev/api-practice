@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun With API</title>
+</head>
+
+<body>
+    <h2 id="title"></h2>
+    <h3>Learn From: <a id="link-activity" href="">Visit This Place</a></h3>
+    <script>
+        function generateTask() {
+            fetch('http://www.boredapi.com/api/activity/')
+                .then(rs => rs.json())
+                .then(data => {
+                    const titleOutput = document.getElementById('title').innerText = data.activity;
+                    const link = document.getElementById('link-activity').innerText = data.link;
+                });
+        };
+        generateTask();
+        setInterval(() => {
+            generateTask();
+        }, 10000);
+    </script>
+</body>
+
+</html>
